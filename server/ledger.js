@@ -6,7 +6,13 @@ class Account {
 }
 
 class Ledger {
-    constructor() {
-        
+    constructor(_accounts = {}) {
+        this.accounts = _accounts;
+    }
+
+    // would need to avoid names collisions...
+    addAcount(name, balance = 0) {
+        this.accounts[name] = new Account(name, balance);
     }
 }
+
