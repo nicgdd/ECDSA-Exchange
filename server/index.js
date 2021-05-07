@@ -8,30 +8,29 @@ const port = 3042;
 app.use(cors());
 app.use(express.json());
 
-////// to remove
+/* replaced #1
 const balances = {
   "1": 100,
   "2": 50,
   "3": 75,
-}
+}*/
 
-//
 const START_ACCOUNTS = 3;
-//const balances = {} (next step...)
-
+const balances = {}; //replaces #1
 const Ledger = require('./ledger');
 const ledger = new Ledger();
+
 for (let i = 0; i < START_ACCOUNTS; i++) {
-  // creates a random account named between 'account000000' & 'account999999'
+  // creates random accounts named between 'account000000' & 'account999999'
   // with balance between 50 & 100
   const name = `account${Math.floor(Math.random()*10**6)}`;
   const balance = Math.floor((Math.random() * 50) + 50);
 
   const newAccount = ledger.addAccount(name, balance)
-  console.log('added :', name, ledger.accounts[name]); ///); ////
+  balances[name] = balance;
+  
+  console.log('added :', name, ledger.accounts[name]);
 }
-console.log('conctructed ledger :', ledger.accounts);
-//
 
 app.get('/balance/:address', (req, res) => {
   const {address} = req.params;
