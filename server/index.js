@@ -32,6 +32,17 @@ for (let i = 0; i < START_ACCOUNTS; i++) {
   console.log('added :', name, ledger.accounts[name]);
 }
 
+const EC = require('elliptic').ec;
+const ec = new EC('secp256k1');
+const key = ec.genKeyPair();
+const privateKey = key.getPrivate().toString(16);
+const publicKey = key.getPublic().encode('hex');
+console.log('================');
+console.log('created keys :', publicKey, privateKey);
+
+
+
+
 app.get('/balance/:address', (req, res) => {
   const {address} = req.params;
   const balance = balances[address] || 0;
