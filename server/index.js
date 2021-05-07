@@ -37,6 +37,7 @@ for (let i = 0; i < START_ACCOUNTS; i++) {
   // sets a random balance between 50 & 100
   const balance = Math.floor((Math.random() * 50) + 50);
   balances[address] = balance;
+  console.log(`Balance : ${balance}`);
   
   //// Ledger class not needed for my challenge 1 solution 
   //const newAccount = ledger.addAccount(publicKey, balance);
