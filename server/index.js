@@ -20,25 +20,28 @@ const balances = {}; //replaces #1
 const Ledger = require('./ledger');
 const ledger = new Ledger();
 
-for (let i = 0; i < START_ACCOUNTS; i++) {
-  // creates random accounts named between 'account000000' & 'account999999'
-  // with balance between 50 & 100
-  const name = `account${Math.floor(Math.random()*10**6)}`;
-  const balance = Math.floor((Math.random() * 50) + 50);
-
-  const newAccount = ledger.addAccount(name, balance)
-  balances[name] = balance;
-  
-  console.log('added :', name, ledger.accounts[name]);
-}
-
 const EC = require('elliptic').ec;
 const ec = new EC('secp256k1');
-const key = ec.genKeyPair();
-const privateKey = key.getPrivate().toString(16);
-const publicKey = key.getPublic().encode('hex');
+
 console.log('================');
-console.log('created keys :', publicKey, privateKey);
+for (let i = 0; i < START_ACCOUNTS; i++) {
+  const key = ec.genKeyPair();
+  const privateKey = key.getPrivate().toString(16);
+  const publicKey = key.getPublic().encode('hex');
+  const address = '0x'+publicKey.slice(-40);
+  console.log('');
+  console.log(`Adress (${i}) : ${address}`);
+  console.log(`Private Key (${i}) : ${privateKey}`);
+
+  // sets a random balance between 50 & 100
+  const balance = Math.floor((Math.random() * 50) + 50);
+  balances[address] = balance;
+  
+  //// Ledger class not needed for my challenge 1 solution 
+  //const newAccount = ledger.addAccount(publicKey, balance);
+}
+console.log('');
+
 
 
 
