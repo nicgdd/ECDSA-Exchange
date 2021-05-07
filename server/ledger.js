@@ -1,5 +1,6 @@
 class Account {
-    constructor(_pubkey, _balance) {
+    constructor(_address, _pubkey, _balance) {
+        this.address = _address;
         this.pubkey = _pubkey;
         this.balance = _balance;
     }
@@ -11,8 +12,8 @@ class Ledger {
     }
 
     // would need to avoid pubkeys collisions...
-    addAccount(pubkey, balance = 0) {
-        this.accounts[pubkey] = new Account(pubkey, balance);
+    addAccount(address, pubkey, balance = 0) {
+        this.accounts[address] = new Account(address, pubkey, balance);
     }
 }
 

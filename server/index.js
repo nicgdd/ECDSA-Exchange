@@ -40,7 +40,7 @@ for (let i = 0; i < START_ACCOUNTS; i++) {
   console.log(`Balance : ${balance}`);
   
   //// Ledger class not needed for my challenge 1 solution 
-  //const newAccount = ledger.addAccount(publicKey, balance);
+  ledger.addAccount(address, publicKey, balance);
 }
 console.log('==================');
 console.log('');
@@ -56,10 +56,11 @@ app.get('/balance/:address', (req, res) => {
 });
 
 app.post('/send', (req, res) => {
-  const {sender, recipient, amount} = req.body;
+  //const {sender, amount, recipient, signature} = req.body;
+  //const result = ledger.transfer(sender, recipient, amount, signature);
   balances[sender] -= amount;
   balances[recipient] = (balances[recipient] || 0) + +amount;
-  res.send({ balance: balances[sender] });
+  res.send({ balance: balances[sender], result: result });
 });
 
 app.listen(port, () => {
