@@ -11,8 +11,9 @@ class Ledger {
     }
 
     // would need to avoid names collisions...
-    addAcount(name, balance = 0) {
+    addAccount(name, balance = 0) {
         this.accounts[name] = new Account(name, balance);
     }
 }
 
+module.exports = Ledger;

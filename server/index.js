@@ -19,18 +19,18 @@ const balances = {
 const START_ACCOUNTS = 3;
 //const balances = {} (next step...)
 
-const Ledger = new require('./ledger');
+const Ledger = require('./ledger');
 const ledger = new Ledger();
 for (let i = 0; i < START_ACCOUNTS; i++) {
   // creates a random account named between 'account000000' & 'account999999'
   // with balance between 50 & 100
-  const name = `account+${Math.floor(Math.random()*10**6)}`;
+  const name = `account${Math.floor(Math.random()*10**6)}`;
   const balance = Math.floor((Math.random() * 50) + 50);
 
-  ledger.addAccount(name, balance)
-  console.log('added :', name, this.accounts[name]); ////
+  const newAccount = ledger.addAccount(name, balance)
+  console.log('added :', name, ledger.accounts[name]); ///); ////
 }
-console.log('new ledger :', ledger.accounts);
+console.log('conctructed ledger :', ledger.accounts);
 //
 
 app.get('/balance/:address', (req, res) => {
