@@ -1,4 +1,4 @@
-class Account {
+/*class Account {
     constructor(_pubkey, _balance) {
         this.pubkey = _pubkey;
         this.balance = _balance;
@@ -17,3 +17,4 @@ class Ledger {
 }
 
 module.exports = Ledger;
+*/

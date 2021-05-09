@@ -17,8 +17,8 @@ const balances = {
 
 const START_ACCOUNTS = 3;
 const balances = {}; //replaces #1
-const Ledger = require('./ledger');
-const ledger = new Ledger();
+//const Ledger = require('./ledger');
+//const ledger = new Ledger();
 
 const EC = require('elliptic').ec;
 const ec = new EC('secp256k1');
